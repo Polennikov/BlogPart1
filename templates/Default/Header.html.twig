@@ -1,0 +1,24 @@
+<header>
+    <div class="headerContent">
+        <div class="textHeader">
+            Blog
+        </div>
+        <div class="buttonContent">
+            <div class="nameHeader">
+                {% if app.user %}
+                    {{ app.user.username }}
+                {% endif %}
+            </div>
+            <div class="buttonHeader">
+                <a class="button" href="{{ path('about') }}">О проекте</a>
+                {% if app.user %}
+                    <a class="button" href="#">Добавить пост</a>
+                    <a class="button" href="{{ path('app_logout') }}">Выйти</a>
+                {% else %}
+                    <a class="button" href="{{ path('app_register') }}">Регистрация</a>
+                    <a class="button" href="{{ path('app_login') }}">Войти</a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</header>
