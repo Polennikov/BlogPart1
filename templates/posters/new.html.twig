@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Posters{% endblock %}
+
+{% block body %}
+    {{ include('Default/Header.html.twig') }}
+
+    <h1>Создание нового поста</h1>
+    <div class="ContentDataSection">
+        <div class="DataSection">
+            {{ include('posters/_form.html.twig') }}
+        </div>
+    </div>
+
+    {{ include('Default/Footer.html.twig') }}
+{% endblock %}

@@ -1,0 +1,72 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Posters{% endblock %}
+
+{% block body %}
+    {{ include('Default/Header.html.twig') }}
+    <h1>Информация о посте</h1>
+    <div class="ContentDataSection">
+        <div class="DataButton">
+            <table class="table">
+                <tbody>
+                <tr>
+                    <th>Заголовок поста</th>
+                    <td>{{ poster.titlePost }}</td>
+                </tr>
+                <tr>
+                    <th>Текс поста</th>
+                    <td>{{ poster.textPost }}</td>
+                </tr>
+                <tr>
+                    <th>Дата публикации</th>
+                    <td>{{ poster.datePost ? poster.datePost|date('Y-m-d H:i:s') : '' }}</td>
+                </tr>
+                <tr>
+                    <th>Количество просмотров</th>
+                    <td>{{ poster.countView }}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    {% if (app.user!=null and  is_granted('ROLE_ADMIN')) %}
+        <div class="ContentDataSection">
+            <div class="DataButton">
+                <div>
+                    {{ include('posters/_delete_form.html.twig') }}
+                </div>
+                <div>
+                    <a href="{{ path('posters_edit', {'id': poster.id}) }}">
+                        <button class="button">Изменить</button>
+                    </a>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+    {% set vars = { 'comment': comment } %}
+    {% include '/comments/index.html.twig' with vars %}
+
+    {% if app.user != null %}
+        <h2>Оставить комментарий</h2>
+        <div class="ContentSection">
+        <div class="Content">
+        {{ form_start(Form) }}
+        <div>
+            {{ form_widget(Form.text_comment, { 'attr': {'class': 'form-control', 'rows': 3} }) }}
+        </div>
+        <div>
+            <button id="submitProduct" class="button" type="submit">
+                Отправить
+            </button>
+        </div>
+        {{ form_end(Form) }}
+    {% endif %}
+    </div>
+    </div>
+    <div class="ContentDataSection">
+        <div class="DataButton">
+            <a class="button" href="{{ path('posters_index') }}">Назад</a>
+        </div>
+    </div>
+
+{% endblock %}

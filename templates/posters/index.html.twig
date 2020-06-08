@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Posters index{% endblock %}
+
+{% block body %}
+    {{ include('Default/Header.html.twig') }}
+
+    <div class="ContentDataSection">
+        <div class="DataSection">
+            {% for poster in posters %}
+                <div class="ContentDataBlock">
+                    <div class="DataBlock">
+                        <a href="{{ path('posters_show', {'id': poster.id}) }}">
+                            <div class='titleContent'>
+                                <td>{{ poster.titlePost }}</td>
+                            </div>
+                            <div class="commentsContent">
+                                <td>{{ poster.textPost }}</td>
+                            </div>
+                            <br>
+                            <div class="endPostContent">
+                                <div>
+                                    добавлено:
+                                    <td>{{ poster.datePost ? poster.datePost|date('Y-m-d H:i:s') : '' }}</td>
+                                </div>
+                                <div>
+                                    просмотры:
+                                    <td>{{ poster.countView }}</td>
+                                </div>
+                                <div>
+                                    комментарии:
+                                    <td>{{ poster.comments|length }}</td>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            {% else %}
+                Записей нет
+            {% endfor %}
+        </div>
+    </div>
+
+{% endblock %}

@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20200510200522 extends AbstractMigration
+final class Version20200531001756 extends AbstractMigration
 {
     public function getDescription() : string
     {
@@ -22,10 +22,9 @@ final class Version20200510200522 extends AbstractMigration
         // this up() migration is auto-generated, please modify it to your needs
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'postgresql', 'Migration can only be executed safely on \'postgresql\'.');
 
-        $this->addSql('CREATE SEQUENCE user_id_seq INCREMENT BY 1 MINVALUE 1 START 1');
-        $this->addSql('CREATE TABLE "user" (id INT NOT NULL, email VARCHAR(180) NOT NULL, roles TEXT NOT NULL, password VARCHAR(255) NOT NULL, name_user VARCHAR(150) NOT NULL, addres_user VARCHAR(200) NOT NULL, phone_user VARCHAR(50) NOT NULL, PRIMARY KEY(id))');
-        $this->addSql('CREATE UNIQUE INDEX UNIQ_8D93D649E7927C74 ON "user" (email)');
-        $this->addSql('COMMENT ON COLUMN "user".roles IS \'(DC2Type:json)\'');
+        $this->addSql('ALTER TABLE comments ADD user_comments_id INT NOT NULL');
+        $this->addSql('ALTER TABLE comments ADD CONSTRAINT FK_5F9E962ACA2C5C13 FOREIGN KEY (user_comments_id) REFERENCES "user" (id) NOT DEFERRABLE INITIALLY IMMEDIATE');
+        $this->addSql('CREATE INDEX IDX_5F9E962ACA2C5C13 ON comments (user_comments_id)');
     }
 
     public function down(Schema $schema) : void
@@ -34,7 +33,8 @@ final class Version20200510200522 extends AbstractMigration
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'postgresql', 'Migration can only be executed safely on \'postgresql\'.');
 
         $this->addSql('CREATE SCHEMA public');
-        $this->addSql('DROP SEQUENCE user_id_seq CASCADE');
-        $this->addSql('DROP TABLE "user"');
+        $this->addSql('ALTER TABLE comments DROP CONSTRAINT FK_5F9E962ACA2C5C13');
+        $this->addSql('DROP INDEX IDX_5F9E962ACA2C5C13');
+        $this->addSql('ALTER TABLE comments DROP user_comments_id');
     }
 }

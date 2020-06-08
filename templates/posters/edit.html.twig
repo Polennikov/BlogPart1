@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Posters{% endblock %}
+
+{% block body %}
+
+    {{ include('Default/Header.html.twig') }}
+
+    <h1>Изменение поста</h1>
+    <div class="ContentDataSection">
+        <div class="DataButton">
+            {{ include('posters/_form.html.twig', {'button_label': 'Изменить'}) }}
+        </div>
+    </div>
+    {% set vars = { 'comment': comment } %}
+    {% include '/comments/index.html.twig' with vars %}
+    <div class="ContentDataSection">
+        <div class="DataButton">
+            <a class="button" href="{{ path('posters_show', {'id': poster.id}) }}">Назад</a>
+        </div>
+    </div>
+
+{% endblock %}

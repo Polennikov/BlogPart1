@@ -96,6 +96,75 @@ footer
     margin-bottom: 10px;
 
 }
+.ContentDataSection
+{
+    background: rgba(255, 243, 202, 0.32) no-repeat center top / cover;
+    mix-blend-mode: normal;
+    display: flex;
+    flex-direction:column;
+
+}
+.DataSection
+{
+    flex-direction:column;
+    justify-content: center;
+    margin: auto;
+    margin-bottom: 10px;
+
+
+
+}
+.DataButton
+{
+ justify-content: center;
+    display: flex;
+
+
+}
+textarea
+{
+    width: 450px;
+    height: 100px;
+}
+.ContentDataBlock
+{
+    width: 1000px;
+    border: 1px solid #000000;
+    margin-top: 10px;
+}
+.DataBlock
+{
+    margin-left: 35px;
+    margin-right: 35px;
+
+}
+.titleContent
+{
+    display: flex;
+    justify-content: center;
+}
+.commentsContent
+{
+    margin-right: 20px;
+    margin-left: 20px;
+    display: flex;
+
+
+}
+.endPostContent
+{
+    display: flex;
+    justify-content:space-between;
+    margin-bottom: 20px;
+}
+a
+{
+    text-decoration: none;
+    font-size: 120%;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    color: #333366;
+}
+a:hover {color: rgba(0, 0, 0, 0.5); }
 .errorMessage
 {
     color: #ff0114;

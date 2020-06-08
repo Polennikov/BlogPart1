@@ -10,9 +10,13 @@
                 {% endif %}
             </div>
             <div class="buttonHeader">
+             {% if (app.user!=null and  is_granted('ROLE_ADMIN')) %}
+                 <a class="button" href="{{ path('easyadmin') }}">Админка</a>
+                 {% endif %}
                 <a class="button" href="{{ path('about') }}">О проекте</a>
+                <a class="button" href="{{ path('posters_index') }}">Главная</a>
                 {% if app.user %}
-                    <a class="button" href="#">Добавить пост</a>
+                    <a class="button" href="{{ path('posters_new') }}">Добавить пост</a>
                     <a class="button" href="{{ path('app_logout') }}">Выйти</a>
                 {% else %}
                     <a class="button" href="{{ path('app_register') }}">Регистрация</a>

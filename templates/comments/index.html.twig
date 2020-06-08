@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Comments index{% endblock %}
+
+{% block body %}
+    <h1>Комментарии</h1>
+    <div class="ContentDataSection">
+        <div class="DataSection">
+            {% for comment in comment %}
+                <div class="ContentDataBlock">
+                    <div class="DataBlock">
+                        Текст комментария:<br>
+                        {{ comment.textComment }}
+                        <div class="endPostContent">
+                            <div>
+                                Дата добавления:
+                                {{ comment.dateComment ? comment.dateComment|date('Y-m-d H:i:s') : '' }}</td>
+                            </div>
+                            <div>
+                                {% if (app.user!=null and  is_granted('ROLE_ADMIN')) %}
+                                    <a href="{{ path('comments_edit', {'id': comment.id}) }}">Изменить</a>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% else %}
+                <td colspan="4">комментарии отсутствуют</td>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

@@ -58,7 +58,8 @@ class RegistrationFormType extends AbstractType
                         'max' => 100,
                     ]),
                     new Regex([
-                        'pattern' => "/[0-9][a-z][A-Z]/i",
+'pattern' => '/(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])/',
+                        #'pattern' => "/[0-9][a-z][A-Z]/i",
                         'message' => 'Пароль должен содержать цифры, латинские заглавные и строчные буквы',
                     ]),
                 ],
